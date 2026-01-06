@@ -1,4 +1,4 @@
-package com.android.llanglator.whisper
+package com.android.llanglator.screens
 
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.*
@@ -7,13 +7,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.android.llanglator.MainViewModel
 
 @Composable
-fun WhisperScreen(vm: WhisperViewModel) {
+fun WhisperScreen(vm: MainViewModel) {
 
     val isRecording = vm.isRecording
     val canTranscribe = vm.canTranscribe
-    val log = vm.log
+    val log by vm.log.collectAsState() // << collect StateFlow as Compose state
+
+
     Box(modifier = Modifier.fillMaxSize()) {
 
         Column(
@@ -37,20 +40,25 @@ fun WhisperScreen(vm: WhisperViewModel) {
                 onClick = { vm.transcribeSample() },
                 enabled = canTranscribe && !isRecording
             ) {
-                Text("Transcribe audio test")
+                Text("Translate audio test")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 📝 Output
-            Text(
-                text = log,
-                color = MaterialTheme.colorScheme.onBackground,
+
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
-            )
+            ) {
+                Text(
+                    text = log,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
         }
     }
 }

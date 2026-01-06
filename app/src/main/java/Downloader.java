@@ -1,5 +1,3 @@
-package com.android.llanglator;
-
 import android.content.Context;
 import android.util.Log;
 
@@ -11,10 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public final class Downloader {
-
     private static final String TAG = "Downloader";
-
-    private Downloader() {}
 
     // Progress callback (0–100)
     public interface ProgressCallback {

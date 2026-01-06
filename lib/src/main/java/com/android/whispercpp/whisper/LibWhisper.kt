@@ -36,6 +36,7 @@ class WhisperContext private constructor(private var ptr: Long) {
                     Log.d(LOG_TAG, "Audio data Trasncript: ${textTimestamp}: ${textSegment}")
 
                 } else {
+                    Log.d(LOG_TAG, "Audio data Else BLOCK")
                     append(WhisperLib.getTextSegment(ptr, i))
                 }
             }
