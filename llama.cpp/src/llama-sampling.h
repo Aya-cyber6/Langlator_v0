@@ -1,6 +1,6 @@
 #pragma once
 
-// TODO: rename llama-sampling.h/.cpp to llama-sampler.h/.cpp ?
+// TODO: rename llama-sampling.h/.jni to llama-sampler.h/.jni ?
 
 #include "llama.h"
 

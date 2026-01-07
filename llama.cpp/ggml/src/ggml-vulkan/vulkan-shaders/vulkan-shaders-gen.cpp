@@ -379,7 +379,7 @@ void string_to_spv_func(std::string name, std::string in_path, std::string out_p
         }
 
         if (dep_file) {
-            // replace .spv output path with the embed .cpp path which is used as output in CMakeLists.txt
+            // replace .spv output path with the embed .jni path which is used as output in CMakeLists.txt
             std::string dep = read_binary_file(target_cpp + ".d", true);
             if (!dep.empty()) {
                 size_t pos = dep.find(out_path);
@@ -1181,8 +1181,8 @@ int main(int argc, char** argv) {
     if (args.find("--target-hpp") != args.end()) {
         target_hpp = args["--target-hpp"]; // Path to generated header file
     }
-    if (args.find("--target-cpp") != args.end()) {
-        target_cpp = args["--target-cpp"]; // Path to generated cpp file
+    if (args.find("--target-jni") != args.end()) {
+        target_cpp = args["--target-jni"]; // Path to generated jni file
     }
 
     if (!directory_exists(output_dir)) {

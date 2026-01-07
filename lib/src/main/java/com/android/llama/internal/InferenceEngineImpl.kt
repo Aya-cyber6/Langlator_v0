@@ -1,12 +1,11 @@
-package com.android.aichat.internal
+package com.android.llama.internal
 
 import android.content.Context
 import android.util.Log
-import com.android.aichat.InferenceEngine
-import com.android.aichat.UnsupportedArchitectureException
-import com.android.aichat.internal.InferenceEngineImpl.Companion.getInstance
+import com.android.llama.InferenceEngine
+import com.android.llama.UnsupportedArchitectureException
+import com.android.llama.internal.InferenceEngineImpl.Companion.getInstance
 import dalvik.annotation.optimization.FastNative
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,7 +17,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -26,7 +24,7 @@ import java.io.IOException
 import kotlin.math.max
 
 /**
- * JNI wrapper for the llama.cpp library providing Android-friendly access to large language models.
+ * JNI wrapper for the llama.jni library providing Android-friendly access to large language models.
  *
  * This class implements a singleton pattern for managing the lifecycle of a single LLM instance.
  * All operations are executed on a dedicated single-threaded dispatcher to ensure thread safety
@@ -42,7 +40,7 @@ import kotlin.math.max
  *
  * State transitions are managed automatically and validated at each operation.
  *
- * @see ai_chat.cpp for the native implementation details
+ * @see ai_chat.jni for the native implementation details
  */
 
 internal class InferenceEngineImpl private constructor(

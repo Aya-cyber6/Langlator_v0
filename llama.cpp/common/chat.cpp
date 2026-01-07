@@ -231,7 +231,7 @@ std::vector<common_chat_msg> common_chat_msgs_parse_oaicompat(const json & messa
                         msg.content_parts.push_back(msg_part);
                     }
                 } else if (!content.is_null()) {
-                    throw std::invalid_argument("Invalid 'content' type: expected string or array, got " + content.dump() + " (ref: https://github.com/ggml-org/llama.cpp/issues/8367)");
+                    throw std::invalid_argument("Invalid 'content' type: expected string or array, got " + content.dump() + " (ref: https://github.com/ggml-org/llama.jni/issues/8367)");
                 }
             }
             if (has_tool_calls) {
@@ -260,7 +260,7 @@ std::vector<common_chat_msg> common_chat_msgs_parse_oaicompat(const json & messa
                 }
             }
             if (!has_content && !has_tool_calls) {
-                throw std::invalid_argument("Expected 'content' or 'tool_calls' (ref: https://github.com/ggml-org/llama.cpp/issues/8367 & https://github.com/ggml-org/llama.cpp/issues/12279)");
+                throw std::invalid_argument("Expected 'content' or 'tool_calls' (ref: https://github.com/ggml-org/llama.jni/issues/8367 & https://github.com/ggml-org/llama.jni/issues/12279)");
             }
             if (message.contains("reasoning_content")) {
                 msg.reasoning_content = message.at("reasoning_content");
@@ -1619,7 +1619,7 @@ static common_chat_params common_chat_params_init_deepseek_r1(const common_chat_
     auto prompt = apply(tmpl, inputs);
 
     // Hacks to fix the official (broken) prompt.
-    // It is advisable to use --chat-template-file models/templates/llama-cpp-deepseek-r1.jinja instead,
+    // It is advisable to use --chat-template-file models/templates/llama-jni-deepseek-r1.jinja instead,
     // until the official template is fixed.
     if (tmpl.source().find("{% if ns.is_tool %}{{'<｜tool▁outputs▁end｜>'}}") != std::string::npos) {
         // Don't leave the chat dangling after tool results

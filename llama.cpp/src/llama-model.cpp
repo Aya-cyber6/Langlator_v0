@@ -1169,7 +1169,7 @@ void llama_model::load_hparams(llama_model_loader & ml) {
 
                 if (found_swa && hparams.n_swa > 0) {
                     LLAMA_LOG_WARN("%s: Phi SWA is currently disabled - results might be suboptimal for some models (see %s)\n",
-                            __func__, "https://github.com/ggml-org/llama.cpp/pull/13676");
+                            __func__, "https://github.com/ggml-org/llama.jni/pull/13676");
 
                     // TODO: fix conversion scripts to correctly populate `n_swa` and `n_swa_pattern`
                     hparams.swa_type = LLAMA_SWA_TYPE_NONE;

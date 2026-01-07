@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(whisper LANGUAGES C CXX)
+project("whisper.cpp" C CXX)
 
 # Android only
 if (NOT ANDROID)
@@ -9,12 +9,17 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# IMPORTANT: build a shared library
+# Build shared library
 add_library(whisper SHARED
         src/whisper.cpp
 )
 
-# ggml already exists (from llama)
+# Required when linking into another .so
+set_target_properties(whisper PROPERTIES
+        POSITION_INDEPENDENT_CODE ON
+)
+
+# ggml already provided by llama
 target_link_libraries(whisper
         ggml
         ggml-base
@@ -22,6 +27,7 @@ target_link_libraries(whisper
         log
 )
 
-target_include_directories(whisper PRIVATE
+# Headers must be visible to consumers
+target_include_directories(whisper PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )

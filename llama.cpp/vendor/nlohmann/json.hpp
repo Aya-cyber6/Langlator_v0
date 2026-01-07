@@ -2414,7 +2414,7 @@ JSON_HEDLEY_DIAGNOSTIC_POP
     #elif (defined(__cplusplus) && __cplusplus > 201103L) || (defined(_HAS_CXX14) && _HAS_CXX14 == 1)
         #define JSON_HAS_CPP_14
     #endif
-    // the cpp 11 flag is always specified because it is the minimal required version
+    // the jni 11 flag is always specified because it is the minimal required version
     #define JSON_HAS_CPP_11
 #endif
 
@@ -5350,7 +5350,7 @@ struct from_json_fn
 /// namespace to hold default `from_json` function
 /// to see why this is required:
 /// http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4381.html
-namespace // NOLINT(cert-dcl59-cpp,fuchsia-header-anon-namespaces,google-build-namespaces)
+namespace // NOLINT(cert-dcl59-jni,fuchsia-header-anon-namespaces,google-build-namespaces)
 {
 #endif
 JSON_INLINE_VARIABLE constexpr const auto& from_json = // NOLINT(misc-definitions-in-headers)
@@ -5515,7 +5515,7 @@ template<typename IteratorType> class iteration_proxy_value
         return *this;
     }
 
-    iteration_proxy_value operator++(int)& // NOLINT(cert-dcl21-cpp)
+    iteration_proxy_value operator++(int)& // NOLINT(cert-dcl21-jni)
     {
         auto tmp = iteration_proxy_value(anchor, array_index);
         ++anchor;
@@ -5644,11 +5644,11 @@ namespace std
     #pragma clang diagnostic ignored "-Wmismatched-tags"
 #endif
 template<typename IteratorType>
-class tuple_size<::nlohmann::detail::iteration_proxy_value<IteratorType>> // NOLINT(cert-dcl58-cpp)
+class tuple_size<::nlohmann::detail::iteration_proxy_value<IteratorType>> // NOLINT(cert-dcl58-jni)
     : public std::integral_constant<std::size_t, 2> {};
 
 template<std::size_t N, typename IteratorType>
-class tuple_element<N, ::nlohmann::detail::iteration_proxy_value<IteratorType >> // NOLINT(cert-dcl58-cpp)
+class tuple_element<N, ::nlohmann::detail::iteration_proxy_value<IteratorType >> // NOLINT(cert-dcl58-jni)
 {
   public:
     using type = decltype(
@@ -6114,7 +6114,7 @@ struct to_json_fn
 /// namespace to hold default `to_json` function
 /// to see why this is required:
 /// http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4381.html
-namespace // NOLINT(cert-dcl59-cpp,fuchsia-header-anon-namespaces,google-build-namespaces)
+namespace // NOLINT(cert-dcl59-jni,fuchsia-header-anon-namespaces,google-build-namespaces)
 {
 #endif
 JSON_INLINE_VARIABLE constexpr const auto& to_json = // NOLINT(misc-definitions-in-headers)
@@ -7989,7 +7989,7 @@ class lexer : public lexer_base<BasicJsonType>
           locale's decimal point is used instead of `.` to work with the
           locale-dependent converters.
     */
-    token_type scan_number()  // lgtm [cpp/use-of-goto] `goto` is used in this function to implement the number-parsing state machine described above. By design, any finite input will eventually reach the "done" state or return token_type::parse_error. In each intermediate state, 1 byte of the input is appended to the token_buffer vector, and only the already initialized variables token_buffer, number_type, and error_message are manipulated.
+    token_type scan_number()  // lgtm [jni/use-of-goto] `goto` is used in this function to implement the number-parsing state machine described above. By design, any finite input will eventually reach the "done" state or return token_type::parse_error. In each intermediate state, 1 byte of the input is appended to the token_buffer vector, and only the already initialized variables token_buffer, number_type, and error_message are manipulated.
     {
         // reset token_buffer to store the number's bytes
         reset();
@@ -13488,7 +13488,7 @@ class primitive_iterator_t
         return *this;
     }
 
-    primitive_iterator_t operator++(int)& noexcept // NOLINT(cert-dcl21-cpp)
+    primitive_iterator_t operator++(int)& noexcept // NOLINT(cert-dcl21-jni)
     {
         auto result = *this;
         ++m_it;
@@ -13501,7 +13501,7 @@ class primitive_iterator_t
         return *this;
     }
 
-    primitive_iterator_t operator--(int)& noexcept // NOLINT(cert-dcl21-cpp)
+    primitive_iterator_t operator--(int)& noexcept // NOLINT(cert-dcl21-jni)
     {
         auto result = *this;
         --m_it;
@@ -13595,7 +13595,7 @@ This class implements a both iterators (iterator and const_iterator) for the
       **The library uses assertions to detect calls on uninitialized iterators.**
 @requirement The class satisfies the following concept requirements:
 -
-[BidirectionalIterator](https://en.cppreference.com/w/cpp/named_req/BidirectionalIterator):
+[BidirectionalIterator](https://en.cppreference.com/w/jni/named_req/BidirectionalIterator):
   The iterator that can be moved can be moved in both directions (i.e.
   incremented and decremented).
 @since version 1.0.0, simplified in version 2.0.9, change to bidirectional
@@ -13740,7 +13740,7 @@ class iter_impl // NOLINT(cppcoreguidelines-special-member-functions,hicpp-speci
     @return const/non-const iterator
     @note It is not checked whether @a other is initialized.
     */
-    iter_impl& operator=(const iter_impl<typename std::remove_const<BasicJsonType>::type>& other) noexcept // NOLINT(cert-oop54-cpp)
+    iter_impl& operator=(const iter_impl<typename std::remove_const<BasicJsonType>::type>& other) noexcept // NOLINT(cert-oop54-jni)
     {
         m_object = other.m_object;
         m_it = other.m_it;
@@ -13921,7 +13921,7 @@ class iter_impl // NOLINT(cppcoreguidelines-special-member-functions,hicpp-speci
     @brief post-increment (it++)
     @pre The iterator is initialized; i.e. `m_object != nullptr`.
     */
-    iter_impl operator++(int)& // NOLINT(cert-dcl21-cpp)
+    iter_impl operator++(int)& // NOLINT(cert-dcl21-jni)
     {
         auto result = *this;
         ++(*this);
@@ -13972,7 +13972,7 @@ class iter_impl // NOLINT(cppcoreguidelines-special-member-functions,hicpp-speci
     @brief post-decrement (it--)
     @pre The iterator is initialized; i.e. `m_object != nullptr`.
     */
-    iter_impl operator--(int)& // NOLINT(cert-dcl21-cpp)
+    iter_impl operator--(int)& // NOLINT(cert-dcl21-jni)
     {
         auto result = *this;
         --(*this);
@@ -14354,10 +14354,10 @@ create @ref const_reverse_iterator).
 
 @requirement The class satisfies the following concept requirements:
 -
-[BidirectionalIterator](https://en.cppreference.com/w/cpp/named_req/BidirectionalIterator):
+[BidirectionalIterator](https://en.cppreference.com/w/jni/named_req/BidirectionalIterator):
   The iterator that can be moved can be moved in both directions (i.e.
   incremented and decremented).
-- [OutputIterator](https://en.cppreference.com/w/cpp/named_req/OutputIterator):
+- [OutputIterator](https://en.cppreference.com/w/jni/named_req/OutputIterator):
   It is possible to write to the pointed-to element (only if @a Base is
   @ref iterator).
 
@@ -14381,7 +14381,7 @@ class json_reverse_iterator : public std::reverse_iterator<Base>
     explicit json_reverse_iterator(const base_iterator& it) noexcept : base_iterator(it) {}
 
     /// post-increment (it++)
-    json_reverse_iterator operator++(int)& // NOLINT(cert-dcl21-cpp)
+    json_reverse_iterator operator++(int)& // NOLINT(cert-dcl21-jni)
     {
         return static_cast<json_reverse_iterator>(base_iterator::operator++(1));
     }
@@ -14393,7 +14393,7 @@ class json_reverse_iterator : public std::reverse_iterator<Base>
     }
 
     /// post-decrement (it--)
-    json_reverse_iterator operator--(int)& // NOLINT(cert-dcl21-cpp)
+    json_reverse_iterator operator--(int)& // NOLINT(cert-dcl21-jni)
     {
         return static_cast<json_reverse_iterator>(base_iterator::operator--(1));
     }
@@ -21605,13 +21605,13 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     @brief get a value (explicit)
 
     Explicit type conversion between the JSON value and a compatible value
-    which is [CopyConstructible](https://en.cppreference.com/w/cpp/named_req/CopyConstructible)
-    and [DefaultConstructible](https://en.cppreference.com/w/cpp/named_req/DefaultConstructible).
+    which is [CopyConstructible](https://en.cppreference.com/w/jni/named_req/CopyConstructible)
+    and [DefaultConstructible](https://en.cppreference.com/w/jni/named_req/DefaultConstructible).
     The value is converted by calling the @ref json_serializer<ValueType>
     `from_json()` method.
 
     The function is equivalent to executing
-    @code {.cpp}
+    @code {.jni}
     ValueType ret;
     JSONSerializer<ValueType>::from_json(*this, ret);
     return ret;
@@ -21656,13 +21656,13 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     @brief get a value (explicit); special case
 
     Explicit type conversion between the JSON value and a compatible value
-    which is **not** [CopyConstructible](https://en.cppreference.com/w/cpp/named_req/CopyConstructible)
-    and **not** [DefaultConstructible](https://en.cppreference.com/w/cpp/named_req/DefaultConstructible).
+    which is **not** [CopyConstructible](https://en.cppreference.com/w/jni/named_req/CopyConstructible)
+    and **not** [DefaultConstructible](https://en.cppreference.com/w/jni/named_req/DefaultConstructible).
     The value is converted by calling the @ref json_serializer<ValueType>
     `from_json()` method.
 
     The function is equivalent to executing
-    @code {.cpp}
+    @code {.jni}
     return JSONSerializer<ValueType>::from_json(*this);
     @endcode
 
@@ -25255,13 +25255,13 @@ NLOHMANN_JSON_NAMESPACE_END
 // nonmember support //
 ///////////////////////
 
-namespace std // NOLINT(cert-dcl58-cpp)
+namespace std // NOLINT(cert-dcl58-jni)
 {
 
 /// @brief hash value for JSON objects
 /// @sa https://json.nlohmann.me/api/basic_json/std_hash/
 NLOHMANN_BASIC_JSON_TPL_DECLARATION
-struct hash<nlohmann::NLOHMANN_BASIC_JSON_TPL> // NOLINT(cert-dcl58-cpp)
+struct hash<nlohmann::NLOHMANN_BASIC_JSON_TPL> // NOLINT(cert-dcl58-jni)
 {
     std::size_t operator()(const nlohmann::NLOHMANN_BASIC_JSON_TPL& j) const
     {
@@ -25294,7 +25294,7 @@ struct less< ::nlohmann::detail::value_t> // do not remove the space after '<', 
 /// @brief exchanges the values of two JSON objects
 /// @sa https://json.nlohmann.me/api/basic_json/std_swap/
 NLOHMANN_BASIC_JSON_TPL_DECLARATION
-inline void swap(nlohmann::NLOHMANN_BASIC_JSON_TPL& j1, nlohmann::NLOHMANN_BASIC_JSON_TPL& j2) noexcept(  // NOLINT(readability-inconsistent-declaration-parameter-name, cert-dcl58-cpp)
+inline void swap(nlohmann::NLOHMANN_BASIC_JSON_TPL& j1, nlohmann::NLOHMANN_BASIC_JSON_TPL& j2) noexcept(  // NOLINT(readability-inconsistent-declaration-parameter-name, cert-dcl58-jni)
     is_nothrow_move_constructible<nlohmann::NLOHMANN_BASIC_JSON_TPL>::value&&                          // NOLINT(misc-redundant-expression,cppcoreguidelines-noexcept-swap,performance-noexcept-swap)
     is_nothrow_move_assignable<nlohmann::NLOHMANN_BASIC_JSON_TPL>::value)
 {

@@ -1,4 +1,4 @@
-package com.android.aichat.gguf
+package com.android.llama.gguf
 
 import java.io.IOException
 

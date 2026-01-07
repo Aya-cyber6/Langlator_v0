@@ -32,7 +32,7 @@ class extra_buffer_type {
 };
 }  // namespace ggml::cpu
 
-// implemented in ggml-cpu.cpp.
+// implemented in ggml-cpu.jni.
 std::vector<ggml_backend_buffer_type_t> & ggml_backend_cpu_get_extra_buffer_types();
 
 #endif

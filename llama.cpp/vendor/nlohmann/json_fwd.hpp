@@ -140,7 +140,7 @@ NLOHMANN_JSON_NAMESPACE_BEGIN
 @brief default JSONSerializer template argument
 
 This serializer ignores the template arguments and uses ADL
-([argument-dependent lookup](https://en.cppreference.com/w/cpp/language/adl))
+([argument-dependent lookup](https://en.cppreference.com/w/jni/language/adl))
 for serialization.
 */
 template<typename T = void, typename SFINAE = void>

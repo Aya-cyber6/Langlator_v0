@@ -7,8 +7,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.aichat.AiChat
-import com.android.aichat.InferenceEngine
+import com.android.llama.LlamaEngine
+import com.android.llama.InferenceEngine
 import com.android.llanglator.whisper.media.decodeWaveFile
 import com.android.llanglator.whisper.recorder.Recorder
 import com.whispercpp.whisper.WhisperContext
@@ -71,7 +71,7 @@ class MainViewModel(
     suspend fun initEngine() {
         try {
             engine = withContext(Dispatchers.Default) {
-                AiChat.getInferenceEngine(getApplication<Application>().applicationContext)
+                LlamaEngine.getInferenceEngine(getApplication<Application>().applicationContext)
             }
 
             // Optional: download model

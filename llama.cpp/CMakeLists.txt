@@ -199,7 +199,7 @@ if (NOT TARGET ggml AND NOT LLAMA_USE_SYSTEM_GGML)
     # ... otherwise assume ggml is added by a parent CMakeLists.txt
 endif()
 
-# cpp-httplib
+# jni-httplib
 if (LLAMA_HTTPLIB)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/cpp-httplib)
 endif()

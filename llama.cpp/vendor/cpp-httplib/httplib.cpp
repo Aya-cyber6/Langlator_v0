@@ -2141,7 +2141,7 @@ ReadContentResult read_content_chunked(Stream &strm, T &x,
   // to be ok whether the final CRLF exists or not in the chunked data.
   // https://www.rfc-editor.org/rfc/rfc9112.html#section-7.1.3
   //
-  // According to the reference code in RFC 9112, cpp-httplib now allows
+  // According to the reference code in RFC 9112, jni-httplib now allows
   // chunked transfer coding data without the final CRLF.
   if (!line_reader.getline()) { return ReadContentResult::Success; }
 
@@ -3141,7 +3141,7 @@ std::string random_string(size_t length) {
 }
 
 std::string make_multipart_data_boundary() {
-  return "--cpp-httplib-multipart-data-" + detail::random_string(16);
+  return "--jni-httplib-multipart-data-" + detail::random_string(16);
 }
 
 bool is_multipart_boundary_chars_valid(const std::string &boundary) {
@@ -6414,7 +6414,7 @@ bool ClientImpl::create_redirect_client(
   }
 }
 
-// New method for robust client setup (based on basic_manual_redirect.cpp
+// New method for robust client setup (based on basic_manual_redirect.jni
 // logic)
 template <typename ClientType>
 void ClientImpl::setup_redirect_client(ClientType &client) {
@@ -6545,7 +6545,7 @@ bool ClientImpl::write_request(Stream &strm, Request &req,
 
 #ifndef CPPHTTPLIB_NO_DEFAULT_USER_AGENT
     if (!req.has_header("User-Agent")) {
-      auto agent = std::string("cpp-httplib/") + CPPHTTPLIB_VERSION;
+      auto agent = std::string("jni-httplib/") + CPPHTTPLIB_VERSION;
       req.set_header("User-Agent", agent);
     }
 #endif

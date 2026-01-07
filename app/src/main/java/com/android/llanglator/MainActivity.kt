@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.android.llanglator.screens.TextTranslateScreen
 import com.android.llanglator.screens.WhisperScreen
-import com.android.llanglator.MainViewModel
 
 class MainActivity : ComponentActivity() {
 

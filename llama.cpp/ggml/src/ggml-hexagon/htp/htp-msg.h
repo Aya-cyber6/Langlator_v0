@@ -30,7 +30,7 @@ enum htp_status {
 
 // The values must match the ggml_type.
 // Duplicated here because we can't include full ggml.h in the htp build.
-// We have some static_asserts in the cpp code to ensure things are in sync.
+// We have some static_asserts in the jni code to ensure things are in sync.
 enum htp_data_type {
     HTP_TYPE_F32   = 0,
     HTP_TYPE_F16   = 1,

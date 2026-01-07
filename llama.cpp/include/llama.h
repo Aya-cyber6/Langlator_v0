@@ -1110,7 +1110,7 @@ extern "C" {
 
     /// Apply chat template. Inspired by hf apply_chat_template() on python.
     /// Both "model" and "custom_template" are optional, but at least one is required. "custom_template" has higher precedence than "model"
-    /// NOTE: This function does not use a jinja parser. It only support a pre-defined list of template. See more: https://github.com/ggml-org/llama.cpp/wiki/Templates-supported-by-llama_chat_apply_template
+    /// NOTE: This function does not use a jinja parser. It only support a pre-defined list of template. See more: https://github.com/ggml-org/llama.jni/wiki/Templates-supported-by-llama_chat_apply_template
     /// @param tmpl A Jinja template to use for this chat. If this is nullptr, the model’s default chat template will be used instead.
     /// @param chat Pointer to a list of multiple llama_chat_message
     /// @param n_msg Number of llama_chat_message in this chat
@@ -1221,7 +1221,7 @@ extern "C" {
     /// @details Nucleus sampling described in academic paper "The Curious Case of Neural Text Degeneration" https://arxiv.org/abs/1904.09751
     LLAMA_API struct llama_sampler * llama_sampler_init_top_p      (float   p, size_t min_keep);
 
-    /// @details Minimum P sampling as described in https://github.com/ggml-org/llama.cpp/pull/3841
+    /// @details Minimum P sampling as described in https://github.com/ggml-org/llama.jni/pull/3841
     LLAMA_API struct llama_sampler * llama_sampler_init_min_p      (float   p, size_t min_keep);
 
     /// @details Locally Typical Sampling implementation described in the paper https://arxiv.org/abs/2202.00666.
@@ -1282,7 +1282,7 @@ extern "C" {
         "use llama_sampler_init_grammar_lazy_patterns instead");
 
 
-    /// @details Lazy grammar sampler, introduced in https://github.com/ggml-org/llama.cpp/pull/9639
+    /// @details Lazy grammar sampler, introduced in https://github.com/ggml-org/llama.jni/pull/9639
     /// @param trigger_patterns A list of patterns that will trigger the grammar sampler. Pattern will be matched from the start of the generation output, and grammar sampler will be fed content starting from its first match group.
     /// @param trigger_tokens A list of tokens that will trigger the grammar sampler. Grammar sampler will be fed content starting from the trigger token included.
     LLAMA_API struct llama_sampler * llama_sampler_init_grammar_lazy_patterns(
@@ -1385,7 +1385,7 @@ extern "C" {
     //
     // Performance utils
     //
-    // NOTE: Used by llama.cpp examples/tools, avoid using in third-party apps. Instead, do your own performance measurements.
+    // NOTE: Used by llama.jni examples/tools, avoid using in third-party apps. Instead, do your own performance measurements.
     //
 
     struct llama_perf_context_data {

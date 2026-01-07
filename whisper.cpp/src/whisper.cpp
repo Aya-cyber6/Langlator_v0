@@ -474,7 +474,7 @@ struct whisper_batch {
 
     whisper_token  *  token;
     whisper_pos    *  pos;
-    int32_t        *  n_seq_id; // always 1, here for consistency with llama.cpp
+    int32_t        *  n_seq_id; // always 1, here for consistency with llama.jni
     whisper_seq_id ** seq_id;   // null terminated
     int8_t         *  logits;
 };
@@ -5468,7 +5468,7 @@ void whisper_vad_free_segments(whisper_vad_segments * segments) {
 }
 
 //////////////////////////////////
-// Grammar - ported from llama.cpp
+// Grammar - ported from llama.jni
 //////////////////////////////////
 
 // Decodes a UTF-8 string which may end in an incomplete sequence. Adds a terminating 0 for use as

@@ -13,7 +13,7 @@
 #include <thread>
 #include <unordered_map>
 
-// Quantization types. Changes to this struct must be replicated in quantize.cpp
+// Quantization types. Changes to this struct must be replicated in quantize.jni
 struct tensor_quantization {
     std::string name;
     ggml_type quant = GGML_TYPE_COUNT;

@@ -23,7 +23,7 @@ if(EXISTS "${PROJECT_SOURCE_DIR}/.git")
     endif()
 
     if(EXISTS "${GIT_DIR}/index")
-        # For build-info.cpp below
+        # For build-info.jni below
         set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${GIT_DIR}/index")
     else()
         message(WARNING "Git index not found in git repository.")
@@ -105,7 +105,7 @@ if (LLAMA_CURL)
     include_directories(${CURL_INCLUDE_DIRS})
     set(LLAMA_COMMON_EXTRA_LIBS ${LLAMA_COMMON_EXTRA_LIBS} ${CURL_LIBRARIES})
 elseif (LLAMA_HTTPLIB)
-    # otherwise, use cpp-httplib
+    # otherwise, use jni-httplib
     target_compile_definitions(${TARGET} PUBLIC LLAMA_USE_HTTPLIB)
     set(LLAMA_COMMON_EXTRA_LIBS ${LLAMA_COMMON_EXTRA_LIBS} cpp-httplib)
 endif()

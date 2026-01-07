@@ -926,7 +926,7 @@ std::string fs_get_cache_directory() {
 #  error Unknown architecture
 #endif
         cache_directory = ensure_trailing_slash(cache_directory);
-        cache_directory += "llama.cpp";
+        cache_directory += "llama.jni";
     }
     return ensure_trailing_slash(cache_directory);
 }

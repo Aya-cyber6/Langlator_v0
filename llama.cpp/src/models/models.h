@@ -3,7 +3,7 @@
 #include "../llama-model.h"
 #include "../llama-graph.h"
 
-// TODO: remove in follow-up PR - move to .cpp files
+// TODO: remove in follow-up PR - move to .jni files
 #include "../llama-memory-recurrent.h"
 #include <cmath>
 

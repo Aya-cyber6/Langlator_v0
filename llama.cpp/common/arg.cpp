@@ -554,7 +554,7 @@ static bool common_params_parse_ex(int argc, char ** argv, common_params_context
         throw std::runtime_error(string_format(
             "error: the supplied chat template is not supported: %s%s\n",
             params.chat_template.c_str(),
-            params.use_jinja ? "" : "\nnote: llama.cpp was started without --jinja, we only support commonly used templates"
+            params.use_jinja ? "" : "\nnote: llama.jni was started without --jinja, we only support commonly used templates"
         ));
     }
 
@@ -934,7 +934,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
     ));
     add_opt(common_arg(
         {"--completion-bash"},
-        "print source-able bash completion script for llama.cpp",
+        "print source-able bash completion script for llama.jni",
         [](common_params & params) {
             params.completion = true;
         }
@@ -1135,7 +1135,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
     add_opt(common_arg(
         {"--swa-full"},
         string_format("use full-size SWA cache (default: %s)\n"
-            "[(more info)](https://github.com/ggml-org/llama.cpp/pull/13194#issuecomment-2868343055)", params.swa_full ? "true" : "false"),
+            "[(more info)](https://github.com/ggml-org/llama.jni/pull/13194#issuecomment-2868343055)", params.swa_full ? "true" : "false"),
         [](common_params & params) {
             params.swa_full = true;
         }
@@ -1143,7 +1143,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
     add_opt(common_arg(
         {"--ctx-checkpoints", "--swa-checkpoints"}, "N",
         string_format("max number of context checkpoints to create per slot (default: %d)"
-            "[(more info)](https://github.com/ggml-org/llama.cpp/pull/15293)", params.n_ctx_checkpoints),
+            "[(more info)](https://github.com/ggml-org/llama.jni/pull/15293)", params.n_ctx_checkpoints),
         [](common_params & params, int value) {
             params.n_ctx_checkpoints = value;
         }
@@ -1151,7 +1151,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
     add_opt(common_arg(
         {"-cram", "--cache-ram"}, "N",
         string_format("set the maximum cache size in MiB (default: %d, -1 - no limit, 0 - disable)"
-            "[(more info)](https://github.com/ggml-org/llama.cpp/pull/16391)", params.cache_ram_mib),
+            "[(more info)](https://github.com/ggml-org/llama.jni/pull/16391)", params.cache_ram_mib),
         [](common_params & params, int value) {
             params.cache_ram_mib = value;
         }
@@ -2046,7 +2046,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         "- isolate: only spawn threads on CPUs on the node that execution started on\n"
         "- numactl: use the CPU map provided by numactl\n"
         "if run without this previously, it is recommended to drop the system page cache before using this\n"
-        "see https://github.com/ggml-org/llama.cpp/issues/1437",
+        "see https://github.com/ggml-org/llama.jni/issues/1437",
         [](common_params & params, const std::string & value) {
             /**/ if (value == "distribute" || value == "") { params.numa = GGML_NUMA_STRATEGY_DISTRIBUTE; }
             else if (value == "isolate") { params.numa = GGML_NUMA_STRATEGY_ISOLATE; }
@@ -2151,7 +2151,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
             }
             if (!llama_supports_gpu_offload()) {
                 fprintf(stderr, "warning: no usable GPU found, --gpu-layers option will be ignored\n");
-                fprintf(stderr, "warning: one possible reason is that llama.cpp was compiled without GPU support\n");
+                fprintf(stderr, "warning: one possible reason is that llama.jni was compiled without GPU support\n");
                 fprintf(stderr, "warning: consult docs/build.md for compilation instructions\n");
             }
         }
@@ -2174,7 +2174,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
                 throw std::invalid_argument("invalid value");
             }
             if (!llama_supports_gpu_offload()) {
-                fprintf(stderr, "warning: llama.cpp was compiled without support for GPU offload. Setting the split mode has no effect.\n");
+                fprintf(stderr, "warning: llama.jni was compiled without support for GPU offload. Setting the split mode has no effect.\n");
             }
         }
     ).set_env("LLAMA_ARG_SPLIT_MODE"));
@@ -2201,7 +2201,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
                 }
             }
             if (!llama_supports_gpu_offload()) {
-                fprintf(stderr, "warning: llama.cpp was compiled without support for GPU offload. Setting a tensor split has no effect.\n");
+                fprintf(stderr, "warning: llama.jni was compiled without support for GPU offload. Setting a tensor split has no effect.\n");
             }
         }
     ).set_env("LLAMA_ARG_TENSOR_SPLIT"));
@@ -2211,7 +2211,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         [](common_params & params, int value) {
             params.main_gpu = value;
             if (!llama_supports_gpu_offload()) {
-                fprintf(stderr, "warning: llama.cpp was compiled without support for GPU offload. Setting the main GPU has no effect.\n");
+                fprintf(stderr, "warning: llama.jni was compiled without support for GPU offload. Setting the main GPU has no effect.\n");
             }
         }
     ).set_env("LLAMA_ARG_MAIN_GPU"));
@@ -3197,7 +3197,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
             }
             if (!llama_supports_gpu_offload()) {
                 fprintf(stderr, "warning: no usable GPU found, --gpu-layers-draft option will be ignored\n");
-                fprintf(stderr, "warning: one possible reason is that llama.cpp was compiled without GPU support\n");
+                fprintf(stderr, "warning: one possible reason is that llama.jni was compiled without GPU support\n");
                 fprintf(stderr, "warning: consult docs/build.md for compilation instructions\n");
             }
         }

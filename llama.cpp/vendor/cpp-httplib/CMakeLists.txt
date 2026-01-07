@@ -142,7 +142,7 @@ elseif (LLAMA_OPENSSL)
 endif()
 
 if (CPPHTTPLIB_OPENSSL_SUPPORT)
-    target_compile_definitions(${TARGET} PUBLIC CPPHTTPLIB_OPENSSL_SUPPORT) # used in server.cpp
+    target_compile_definitions(${TARGET} PUBLIC CPPHTTPLIB_OPENSSL_SUPPORT) # used in server.jni
     if (APPLE AND CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         target_compile_definitions(${TARGET} PRIVATE CPPHTTPLIB_USE_CERTS_FROM_MACOSX_KEYCHAIN)
         find_library(CORE_FOUNDATION_FRAMEWORK CoreFoundation REQUIRED)

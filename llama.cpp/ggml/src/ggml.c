@@ -254,7 +254,7 @@ void ggml_abort(const char * file, int line, const char * fmt, ...) {
     abort();
 }
 
-// ggml_print_backtrace is registered with std::set_terminate by ggml.cpp
+// ggml_print_backtrace is registered with std::set_terminate by ggml.jni
 
 //
 // logging

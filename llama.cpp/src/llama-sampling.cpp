@@ -2311,7 +2311,7 @@ struct llama_sampler * llama_sampler_init_dry(const struct llama_vocab * vocab, 
     );
 }
 
-// wrapper for test-sampling.cpp
+// wrapper for test-sampling.jni
 struct llama_sampler * llama_sampler_init_dry_testing(int32_t context_size, float dry_multiplier, float dry_base, int32_t dry_allowed_length, int32_t dry_penalty_last_n, const std::vector<std::vector<llama_token>>& seq_breakers) {
     llama_vocab dummy_vocab;
     auto * result = llama_sampler_init_dry(&dummy_vocab, context_size, dry_multiplier, dry_base, dry_allowed_length, dry_penalty_last_n, NULL, 0);

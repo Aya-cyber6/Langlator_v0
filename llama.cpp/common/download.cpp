@@ -293,7 +293,7 @@ static bool common_download_head(CURL *              curl,
         return false;
     }
 
-    http_headers.ptr = curl_slist_append(http_headers.ptr, "User-Agent: llama-cpp");
+    http_headers.ptr = curl_slist_append(http_headers.ptr, "User-Agent: llama-jni");
     // Check if hf-token or bearer-token was specified
     if (!bearer_token.empty()) {
         std::string auth_header = "Authorization: Bearer " + bearer_token;
@@ -453,7 +453,7 @@ std::pair<long, std::vector<char>> common_remote_get_content(const std::string &
     if (params.max_size > 0) {
         curl_easy_setopt(curl.get(), CURLOPT_MAXFILESIZE, params.max_size);
     }
-    http_headers.ptr = curl_slist_append(http_headers.ptr, "User-Agent: llama-cpp");
+    http_headers.ptr = curl_slist_append(http_headers.ptr, "User-Agent: llama-jni");
     for (const auto & header : params.headers) {
         http_headers.ptr = curl_slist_append(http_headers.ptr, header.c_str());
     }
@@ -625,7 +625,7 @@ static bool common_download_file_single_online(const std::string & url,
 
     auto [cli, parts] = common_http_client(url);
 
-    httplib::Headers default_headers = {{"User-Agent", "llama-cpp"}};
+    httplib::Headers default_headers = {{"User-Agent", "llama-jni"}};
     if (!bearer_token.empty()) {
         default_headers.insert({"Authorization", "Bearer " + bearer_token});
     }
@@ -733,7 +733,7 @@ std::pair<long, std::vector<char>> common_remote_get_content(const std::string  
                                                              const common_remote_params & params) {
     auto [cli, parts] = common_http_client(url);
 
-    httplib::Headers headers = {{"User-Agent", "llama-cpp"}};
+    httplib::Headers headers = {{"User-Agent", "llama-jni"}};
     for (const auto & header : params.headers) {
         size_t pos = header.find(':');
         if (pos != std::string::npos) {
@@ -898,7 +898,7 @@ common_hf_file_res common_get_hf_file(const std::string & hf_repo_with_tag, cons
     if (!bearer_token.empty()) {
         headers.push_back("Authorization: Bearer " + bearer_token);
     }
-    // Important: the User-Agent must be "llama-cpp" to get the "ggufFile" field in the response
+    // Important: the User-Agent must be "llama-jni" to get the "ggufFile" field in the response
     // User-Agent header is already set in common_remote_get_content, no need to set it here
 
     // make the request

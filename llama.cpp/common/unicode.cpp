@@ -1,6 +1,6 @@
 #include "unicode.h"
 
-// implementation adopted from src/unicode.cpp
+// implementation adopted from src/unicode.jni
 
 size_t utf8_sequence_length(unsigned char first_byte) {
     const size_t lookup[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4 };

@@ -52,40 +52,22 @@ add_subdirectory(${GGML_DIR} build-ggml)
 target_compile_options(ggml PRIVATE ${GGML_COMPILE_OPTIONS})
 
 # -------------------------------
-# llama.cpp
+# llama.jni
 # -------------------------------
 add_subdirectory(${LLAMA_DIR} build-llama)
 
 # -------------------------------
-# whisper.cpp (build as STATIC, then link into ai_native)
+# whisper.jni (build as STATIC, then link into ai_native)
 # -------------------------------
-set(WHISPER_SRC
-        ${WHISPER_DIR}/src/whisper.cpp
-)
 
-add_library(whisper STATIC ${WHISPER_SRC})
-
-target_include_directories(whisper PUBLIC
-        ${WHISPER_DIR}
-        ${WHISPER_DIR}/src
-        ${WHISPER_DIR}/include
-)
-
-target_compile_definitions(whisper PRIVATE
-        GGML_SYSTEM_ARCH=${GGML_SYSTEM_ARCH}
-        GGML_CPU_KLEIDIAI=$<BOOL:${GGML_CPU_KLEIDIAI}>
-        GGML_OPENMP=$<BOOL:${GGML_OPENMP}>
-        GGML_USE_CPU
-)
-
-target_link_libraries(whisper PRIVATE ggml)
+add_subdirectory(${WHISPER_DIR} build-whisper)
 
 # -------------------------------
 # Main shared library
 # -------------------------------
 add_library(ai_native SHARED
-        ai_chat.cpp
-        jni.c
+        llamaJni.cpp
+        whisperJni.c
 )
 
 # Compile definitions
@@ -102,6 +84,10 @@ target_include_directories(ai_native PRIVATE
         ${LLAMA_DIR}/common
         ${LLAMA_DIR}/include
 
+        ${WHISPER_DIR}
+        ${WHISPER_DIR}/src
+        ${WHISPER_DIR}/include
+
         ${GGML_DIR}/include
         ${GGML_DIR}/src
 )
@@ -112,7 +98,7 @@ target_link_libraries(ai_native
         llama
         common
         ggml
-        whisper   # <- whisper code now linked statically
+        whisper
         android
         ${LOG_LIB}
 )

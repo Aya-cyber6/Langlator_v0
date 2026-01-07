@@ -650,7 +650,7 @@ void common_chat_msg_parser::clear_tools() {
 }
 
 /**
- * All common_chat_parse_* moved from chat.cpp to chat-parser.cpp below
+ * All common_chat_parse_* moved from chat.jni to chat-parser.jni below
  * to reduce incremental compile time for parser changes.
  */
 static void common_chat_parse_generic(common_chat_msg_parser & builder) {

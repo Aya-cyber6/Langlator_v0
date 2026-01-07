@@ -1,10 +1,10 @@
-package com.android.aichat.gguf
+package com.android.llama.gguf
 
 import kotlin.collections.get
 
 
 /**
- * Numerical codes used by `general.file_type` (see llama.cpp repo's `constants.py`).
+ * Numerical codes used by `general.file_type` (see llama.jni repo's `constants.py`).
  * The `label` matches what llama‑cli prints.
  */
 enum class FileType(val code: Int, val label: String) {

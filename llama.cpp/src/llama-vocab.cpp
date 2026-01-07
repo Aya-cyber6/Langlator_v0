@@ -410,7 +410,7 @@ struct llm_tokenizer_bpe : llm_tokenizer {
                 break;
             case LLAMA_VOCAB_PRE_TYPE_KIMI_K2:
                 regex_exprs = {
-                    // K2 trigger pattern - this will activate the custom K2 handler in unicode.cpp
+                    // K2 trigger pattern - this will activate the custom K2 handler in unicode.jni
                     // The custom handler implements all K2 patterns with proper Han character exclusion
                     "\\p{Han}+",
                 };
@@ -445,7 +445,7 @@ struct llm_tokenizer_bpe : llm_tokenizer {
                 break;
             case LLAMA_VOCAB_PRE_TYPE_AFMOE:
                 regex_exprs = {
-                    // Digit handling - uses custom implementation in unicode.cpp
+                    // Digit handling - uses custom implementation in unicode.jni
                     // Groups digits with leading 1-2 based on total length modulo 3
                     "\\p{AFMoE_digits}",
                     // CJK and Asian scripts (using direct Unicode literals)

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.android.aichat"
+    namespace = "com.android.llama"
     compileSdk = 36
 
     ndkVersion = "29.0.13113456"
@@ -44,7 +44,7 @@ android {
     }
     externalNativeBuild {
         cmake {
-            path("src/main/cpp/CMakeLists.txt")
+            path("src/main/jni/CMakeLists.txt")
             version = "3.31.6"
         }
     }
