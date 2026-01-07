@@ -40,7 +40,7 @@ fun WhisperScreen(vm: MainViewModel) {
                 onClick = { vm.transcribeSample() },
                 enabled = canTranscribe && !isRecording
             ) {
-                Text("Translate audio test")
+                Text("Translate audio file")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
